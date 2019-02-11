@@ -2,11 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'color-theme-sanityinc-solarized)
-(require-package 'color-theme-sanityinc-tomorrow)
+(require-package 'zenburn-theme)
 
 ;; If you don't customize it, this is the theme you get.
-(setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
+(setq-default custom-enabled-themes '(zenburn))
 
 ;; Ensure that themes will be applied even if they have not been customized
 (defun reapply-themes ()
@@ -22,17 +21,17 @@
 ;;------------------------------------------------------------------------------
 ;; Toggle between light and dark
 ;;------------------------------------------------------------------------------
-(defun light ()
-  "Activate a light color theme."
-  (interactive)
-  (setq custom-enabled-themes '(sanityinc-tomorrow-day))
-  (reapply-themes))
+;; (defun light ()
+;;   "activate a light color theme."
+;;   (interactive)
+;;   (setq custom-enabled-themes '(sanityinc-tomorrow-day))
+;;   (reapply-themes))
 
-(defun dark ()
-  "Activate a dark color theme."
-  (interactive)
-  (setq custom-enabled-themes '(sanityinc-tomorrow-bright))
-  (reapply-themes))
+;; (defun dark ()
+;;   "activate a dark color theme."
+;;   (interactive)
+;;   (setq custom-enabled-themes '(sanityinc-tomorrow-bright))
+;;   (reapply-themes))
 
 
 (when (maybe-require-package 'dimmer)
