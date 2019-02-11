@@ -133,6 +133,7 @@
 ;; (require 'init-mu)
 (require 'init-ledger)
 (require 'init-symbol-overlay)
+(require 'init-c++)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)
