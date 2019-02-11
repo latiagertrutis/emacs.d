@@ -53,7 +53,6 @@
 (require-package 'scratch)
 (require-package 'command-log-mode)
 
-(require 'init-symbol-overlay)
 (require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)
@@ -133,6 +132,7 @@
 ;;(require 'init-twitter)
 ;; (require 'init-mu)
 (require 'init-ledger)
+(require 'init-symbol-overlay)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)
