@@ -102,8 +102,13 @@ Call a second time to restore the original window configuration."
 
 
 
+(require-package 'bind-key)
 (unless (memq window-system '(nt w32))
-  (windmove-default-keybindings 'control))
+  (bind-key* "M-[" 'windmove-up)
+  (bind-key* "M-'" 'windmove-right)
+  (bind-key* "M-/" 'windmove-down)       ;
+  (bind-key* "M-;" 'windmove-left)
+  )
 
 
 (provide 'init-windows)

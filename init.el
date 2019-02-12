@@ -135,6 +135,7 @@
 (require 'init-symbol-overlay)
 (require 'init-c++)
 (require 'init-c)
+(require 'init-irony)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)
