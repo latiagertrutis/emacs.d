@@ -136,6 +136,7 @@
 (require 'init-c++)
 (require 'init-c)
 (require 'init-irony)
+(require 'header2)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)
