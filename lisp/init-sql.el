@@ -15,6 +15,18 @@ Fix for the above hasn't been released as of Emacs 25.2."
 
 (add-hook 'sql-interactive-mode-hook 'sanityinc/fix-postgres-prompt-regexp)
 
+;;print query in console
+(add-hook 'sql-login-hook 'my-sql-login-hook)
+(defun my-sql-login-hook ()
+  "Custom SQL log-in behaviours. See `sql-login-hook'."
+  ;; n.b. If you are looking for a response and need to parse the
+  ;; response, use `sql-redirect-value' instead of `comint-send-string'.
+  (when (eq sql-product 'postgres)
+    (let ((proc (get-buffer-process (current-buffer))))
+      ;; Output each query before executing it. (n.b. this also avoids
+      ;; the psql prompt breaking the alignment of query results.)
+      (comint-send-string proc "\\set ECHO queries\n"))))
+
 (defun sanityinc/pop-to-sqli-buffer ()
   "Switch to the corresponding sqli buffer."
   (interactive)
@@ -25,6 +37,11 @@ Fix for the above hasn't been released as of Emacs 25.2."
     (sql-set-sqli-buffer)
     (when sql-buffer
       (sanityinc/pop-to-sqli-buffer))))
+
+;; trucate lines
+(add-hook 'sql-interactive-mode-hook
+          (lambda ()
+            (toggle-truncate-lines t)))
 
 (after-load 'sql
   (define-key sql-mode-map (kbd "C-c C-z") 'sanityinc/pop-to-sqli-buffer)
