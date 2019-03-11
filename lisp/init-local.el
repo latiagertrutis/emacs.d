@@ -21,4 +21,19 @@ This is to update existing buffers after a Git pull of their underlying files."
               (message "Reverted %s\n" (buffer-file-name))))
           (buffer-list))))
 
+;;my windows move
+(defun my-window-move-right ()
+  (interactive)
+  (condition-case err
+      (windmove-right)
+    (error
+     (other-frame -1))))
+
+(defun my-window-move-left ()
+  (interactive)
+  (condition-case err
+      (windmove-left)
+    (error
+     (other-frame -1))))
+
 (provide 'init-local)
