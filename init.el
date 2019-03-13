@@ -139,6 +139,7 @@
 (require 'header2)
 (require 'init-go)
 (require 'init-smooth-scrolling)
+(require 'init-go-delve)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)
