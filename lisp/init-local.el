@@ -36,4 +36,7 @@ This is to update existing buffers after a Git pull of their underlying files."
     (error
      (other-frame -1))))
 
+;;default font
+(set-default-font "Monospace Serif")
+
 (provide 'init-local)
