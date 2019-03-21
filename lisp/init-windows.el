@@ -104,9 +104,9 @@ Call a second time to restore the original window configuration."
 
 (require-package 'bind-key)
 (unless (memq window-system '(nt w32))
-  (bind-key* "C-k" 'windmove-up)
+  (bind-key* "C-," 'windmove-up)
   (bind-key* "C-'" 'my-window-move-right)
-  (bind-key* "C-l" 'windmove-down)
+  (bind-key* "C-." 'windmove-down)
   (bind-key* "C-;" 'my-window-move-left)
   )
 
