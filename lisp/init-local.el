@@ -37,6 +37,6 @@ This is to update existing buffers after a Git pull of their underlying files."
      (other-frame -1))))
 
 ;;default font
-(set-default-font "Monospace Serif 13" nil t)
+(set-default-font "Free Mono 14" nil t)
 
 (provide 'init-local)
