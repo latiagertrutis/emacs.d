@@ -5,13 +5,8 @@
 (defun indent-buffer ()
   "Just indent all the buffer."
   (interactive)
-  (save-excursion (indent-regio
-
-
-
-
-                   n (point-min) (point-max) nil)))
-(global-set-key (kbd "C-c i") 'indent-buffer)
+  (save-excursion (indent-region (point-min) (point-max) nil)))
+(bind-key* "C-c i" 'indent-buffer)
 
 ;; revert all the buffers
 (defun revert-all-buffers ()
