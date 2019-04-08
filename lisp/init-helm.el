@@ -23,7 +23,7 @@
       helm-ff-file-name-history-use-recentf t)
 
 ;; (setq helm-autoresize-max-height 0)
-;; (setq helm-autoresize-min-height 20)
+(setq helm-autoresize-min-height 30)
 (helm-autoresize-mode 1)
 
 (defun my-helm-mode-hook ()
