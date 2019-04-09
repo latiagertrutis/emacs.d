@@ -140,6 +140,7 @@
 (require 'init-go)
 (require 'init-smooth-scrolling)
 (require 'init-go-delve)
+(require 'init-alias)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)
