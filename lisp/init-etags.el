@@ -28,6 +28,7 @@
 (bind-key* "C-c C-t" 'tags-make-n-visit-workspace)
 (bind-key* "C-c C-d" 'xref-find-definitions)
 (bind-key* "C-c C-r" 'xref-find-references)
+(bind-key* "C-c C-b" 'xref-pop-marker-stack)
 ;; (bind-key* (kbd *altgr-r*) 'recentf-open-files)
 
 ;; ;; need system package "global"
