@@ -141,6 +141,7 @@
 (require 'init-smooth-scrolling)
 (require 'init-go-delve)
 (require 'init-alias)
+(require 'init-etags)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)
