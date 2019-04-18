@@ -15,17 +15,17 @@
 (setq tags-table-list
       '("~/.emacs.d"))
 
-(defun tags-make-n-visit (file-pattern)
+(defun refresh-tags (file-pattern out-file)
   "Create a tag file corresponding to FILE-PATTERN, then visit it."
-  (shell-command (concat "etags -o ~/.emacs.d/TAGS "
-                         file-pattern))
-  (visit-tags-table "~/.emacs.d/TAGS"))
+  (shell-command (format "etags -o %s %s" out-file file-pattern))
+  (let ((tags-revert-without-query t))  ; don't query, revert silently
+    (visit-tags-table out-file nil)))
 
-(defun tags-make-n-visit-workspace ()
+(defun refresh-tags-prev-dir ()
   (interactive)
-  (tags-make-n-visit "~/workspace/**/*.[ch]"))
+  (refresh-tags "../**/*.[ch]" "~/.emacs.d/TAGS"))
 
-(bind-key* "C-c C-t" 'tags-make-n-visit-workspace)
+(bind-key* "C-c C-t" 'refresh-tags-prev-dir)
 (bind-key* "C-c C-d" 'xref-find-definitions)
 (bind-key* "C-c C-r" 'xref-find-references)
 (bind-key* "C-c C-b" 'xref-pop-marker-stack)
