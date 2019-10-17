@@ -11,11 +11,13 @@
     (add-hook 'cider-repl-mode-hook 'subword-mode)
     (add-hook 'cider-repl-mode-hook 'paredit-mode))
 
-  (require-package 'flycheck-clojure)
-  (after-load 'clojure-mode
-    (after-load 'cider
-      (after-load 'flycheck
-        (flycheck-clojure-setup)))))
+  ;; Comented due error on flycheck
+  ;; (require-package 'flycheck-clojure)
+  ;; (after-load 'clojure-mode
+  ;;   (after-load 'cider
+  ;;     (after-load 'flycheck
+  ;;       (flycheck-clojure-setup))))
+  )
 
 
 (provide 'init-clojure-cider)
