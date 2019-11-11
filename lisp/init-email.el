@@ -34,7 +34,7 @@
 
 ;; Group interface
 ;; *Group* buffer: how to format each group entry.
-(setq gnus-group-line-format "%M%m %8{│%} %6N (nl) %8{│%} %6t (tot) %8{│%} %(%-20,20g%) desde %2,2~(cut 6)d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
+(setq gnus-group-line-format "%M%m %8{│%} %6N (nl) %8{│%} %6t (tot) %8{│%} %(%-30,30g%) %8{│%} %(%-20,20G%)\n"
       ;;
       ;; %var details C-h i
       ;;`M' An asterisk if the group only has marked articles.
@@ -78,5 +78,14 @@
         gnus-sum-thread-tree-single-leaf "┗━━❯ "))
 
 (oxy-unicode-threads-heavy)
+
+
+(defun gnus-show-all-recent ()
+  "Show all mail"
+  (gnus-summary-insert-old-articles t) ;; show all, or t->50 to show 50 old mail
+  (gnus-summary-sort-by-most-recent-date))
+
+
+(add-hook 'gnus-summary-prepare-hook '(lambda () (run-with-idle-timer 0.1 nil 'gnus-show-all-recent)))
 
 (provide 'init-email)
