@@ -1,9 +1,15 @@
 ;; IMAP
+
+;; Let's have a chance to login against local IMAP services
+;; (add-to-list 'auth-sources '(:source "~/.authinfo"))
+
+;; Sin bandeja primaria
 (setq gnus-select-method
-      '(nnimap "imap.gmail.com"))
+      '(nnnil ""))
 
 (setq gnus-secondary-select-methods
-      '((nnimap "imap-mail.outlook.com")))
+      '((nnimap "imap-mail.outlook.com")
+        (nnimap "imap.gmail.com")))
 
 ;; SMTP
 (setq message-send-mail-function 'smtpmail-send-it
@@ -13,7 +19,7 @@
       smtpmail-smtp-server "smtp.gmail.com"
       smtpmail-smtp-service 587)
 
-;; eye candy
+;; Custom faces
 (copy-face 'font-lock-variable-name-face 'gnus-face-6)
 (setq gnus-face-6 'gnus-face-6)
 (copy-face 'font-lock-constant-face 'gnus-face-7)
@@ -25,6 +31,26 @@
 (copy-face 'font-lock-constant-face 'gnus-face-9)
 (set-face-foreground 'gnus-face-9 "gray70")
 (setq gnus-face-9 'gnus-face-9)
+
+;; Group interface
+;; *Group* buffer: how to format each group entry.
+(setq gnus-group-line-format "%M%m %8{│%} %6N (nl) %8{│%} %6t (tot) %8{│%} %(%-20,20g%) desde %2,2~(cut 6)d/%2,2~(cut 4)d à %2,2~(cut 9)dh%2,2~(cut 11)d\n"
+      ;;
+      ;; %var details C-h i
+      ;;`M' An asterisk if the group only has marked articles.
+      ;;'N' Number of unread articles.
+      ;;`t' Estimated total number of articles.
+      ;;`G' Group name.
+      ;;`D' Newsgroup description.
+      ;;`m' `%' (`gnus-new-mail-mark') if there has arrived new mail to the
+      ;;    group lately.
+      ;;`D' Last time the group as been accessed.
+      ;;
+      ;; For the record, a default group line format
+      ;;(setq gnus-group-line-format "%M\%S\%p\%P\%5y: %(%-40,40g%)%6,6~(cut 2)d\n")
+      )
+
+;; Summary interface
 (setq gnus-summary-make-false-root 'dummy)
 (setq gnus-summary-make-false-root-always nil)
 (defun oxy-unicode-threads ()
