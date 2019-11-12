@@ -9,7 +9,14 @@
 
 (setq gnus-secondary-select-methods
       '((nnimap "imap-mail.outlook.com")
-        (nnimap "imap.gmail.com")))
+        (nnimap "gmail"
+                (nnimap-address "imap.gmail.com")
+                (nnimap-server-port 993)
+                (nnimap-stream ssl))
+        (nnimap "unchartech"
+                (nnimap-address "imap.gmail.com")
+                (nnimap-server-port 993)
+                (nnimap-stream ssl))))
 
 ;; SMTP
 (setq message-send-mail-function 'smtpmail-send-it
@@ -80,12 +87,22 @@
 (oxy-unicode-threads-heavy)
 
 
-(defun gnus-show-all-recent ()
-  "Show all mail"
-  (gnus-summary-insert-old-articles t) ;; show all, or t->50 to show 50 old mail
-  (gnus-summary-sort-by-most-recent-date))
+(defun gnus-show-all ()
+  "show all, or t->50 to show 50 old mail"
+  (gnus-summary-insert-old-articles 50))
+
+;; User info
+(setq mail-host-address "gmail.com")
+(setq user-full-name "Mateo Rodriguez")
+(setq user-mail-address "teorodrip@gmail.com")
 
 
-(add-hook 'gnus-summary-prepare-hook '(lambda () (run-with-idle-timer 0.1 nil 'gnus-show-all-recent)))
+(setq gnus-thread-sort-functions
+      '(gnus-thread-sort-by-most-recent-date
+        (not gnus-thread-sort-by-number)))
+
+(setq gnus-use-cache t)
+
+(add-hook 'gnus-summary-prepare-hook '(lambda () (run-with-idle-timer 0.1 nil 'gnus-show-all)))
 
 (provide 'init-email)
