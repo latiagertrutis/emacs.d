@@ -95,6 +95,7 @@
 (setq mail-host-address "gmail.com")
 (setq user-full-name "Mateo Rodriguez")
 (setq user-mail-address "teorodrip@gmail.com")
+(setq message-signature-file "~/.emacs.d/.signature")
 
 
 (setq gnus-thread-sort-functions
