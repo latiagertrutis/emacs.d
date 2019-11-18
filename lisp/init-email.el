@@ -3,27 +3,29 @@
 ;; Let's have a chance to login against local IMAP services
 ;; (add-to-list 'auth-sources '(:source "~/.authinfo"))
 
-;; Sin bandeja primaria
+(require 'smtpmail)
+;; Bandeja primaria
 (setq gnus-select-method
-      '(nnnil ""))
+      '(nnimap "posteo"
+               (nnimap-address "posteo.de")
+               (nnimap-server-port 993)
+               (nnimap-stream ssl)))
 
 (setq gnus-secondary-select-methods
-      '((nnimap "imap-mail.outlook.com")
-        (nnimap "gmail"
-                (nnimap-address "imap.gmail.com")
-                (nnimap-server-port 993)
-                (nnimap-stream ssl))
-        (nnimap "unchartech"
+      '((nnimap "unchartech"
                 (nnimap-address "imap.gmail.com")
                 (nnimap-server-port 993)
                 (nnimap-stream ssl))))
 
-;; SMTP
+;; SMTP & other
 (setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "teorodrip@gmail.com" nil))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
+      gnus-message-archive-group '((".*" "nnimap:Sent"))
+      message-signature-file "~/.emacs.d/.signature"
+      user-mail-address "teorodrip@posteo.net"
+      user-full-name "Mateo Rodriguez Ripolles"
+      smtpmail-default-smtp-server "smtp.posteo.de"
+      smtpmail-smtp-server  "posteo.de"
+      smtpmail-stream-type  'starttls
       smtpmail-smtp-service 587)
 
 ;; Custom faces
@@ -90,13 +92,6 @@
 (defun gnus-show-all ()
   "show all, or t->50 to show 50 old mail"
   (gnus-summary-insert-old-articles 50))
-
-;; User info
-(setq mail-host-address "gmail.com")
-(setq user-full-name "Mateo Rodriguez")
-(setq user-mail-address "teorodrip@gmail.com")
-(setq message-signature-file "~/.emacs.d/.signature")
-
 
 (setq gnus-thread-sort-functions
       '(gnus-thread-sort-by-most-recent-date
