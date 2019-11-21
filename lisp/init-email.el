@@ -11,14 +11,13 @@
                (nnimap-server-port 993)
                (nnimap-stream ssl)))
 
-(setq gnus-secondary-select-methods
-      '((nnimap "unchartech"
-                (nnimap-address "imap.gmail.com")
-                (nnimap-server-port 993)
-                (nnimap-stream ssl))))
+;; (setq gnus-secondary-select-methods
+;;       '())
 
 ;; SMTP & other
 (setq message-send-mail-function 'smtpmail-send-it
+      auth-source-debug t
+      auth-sources '((:source "~/.emacs.d/secrets/.authinfo.gpg"))
       gnus-message-archive-group '((".*" "nnimap:Sent"))
       message-signature-file "~/.emacs.d/.signature"
       user-mail-address "teorodrip@posteo.net"
