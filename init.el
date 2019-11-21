@@ -121,6 +121,7 @@
 (require 'init-clojure-cider)
 (require 'init-common-lisp)
 (require 'init-email)
+(require 'init-eshell)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
