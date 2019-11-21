@@ -25,6 +25,7 @@
 ;; We will use some of the packages from org extras, especially org-drill and org-mime for HTML exports
 (maybe-require-package 'org-drill)
 (maybe-require-package 'org-mime)
+(maybe-require-package 'ox-pandoc)
 
 ;; Better org return
 
@@ -82,6 +83,8 @@ Use a prefix arg to get regular RET. "
 (maybe-require-package 'org-tree-slide)
 (setq org-tree-slide-skip-outline-level 4)
 (org-tree-slide-simple-profile)
+
+
 
 ;; (when *is-a-mac*
 ;;   (maybe-require-package 'grab-mac-link))
