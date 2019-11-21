@@ -146,13 +146,6 @@
    (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
 (bbdb-initialize 'gnus 'message)
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-(setq bbdb-user-mail-names
-      (regexp-opt '("david.miller@armedia.com"
-                    "david.oc.miller@gmail.com"
-                    "dmiller@davidocmiller.tech")))
-(setq bbdb-complete-name-allow-cycling t)
-;; no popup buffers
-;;(setq bbdb-use-pop-up nil)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;; end of bbdb integration ;;;;;;;;;;;;;;;;;;;;
 
