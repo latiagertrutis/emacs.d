@@ -72,8 +72,12 @@ Use a prefix arg to get regular RET. "
      (t
       (org-return)))))
 (after-load 'org
-  (define-key org-mode-map (kbd "RET")  #'ha/org-return))
+  (define-key org-mode-map (kbd "RET")  #'ha/org-return)
+  (define-key org-mode-map (kbd "C-c t")  #'org-todo))
 
+(setq org-todo-keywords
+      '((sequence "TODO(t!)" "PROGRESS(p!)" "|" "DONE(d!)")))
+(setq org-log-done t)
 
 ;; Color and display
 
