@@ -26,6 +26,34 @@
 (maybe-require-package 'org-drill)
 (maybe-require-package 'org-mime)
 (maybe-require-package 'ox-pandoc)
+(setq org-latex-classes
+      '("beamer"
+        "\\documentclass\[presentation\]\{beamer\}"
+        ("\\section\{%s\}" . "\\section*\{%s\}")
+        ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
+        ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}")))
+
+;; Function to determine work time
+(defun calcFunc-dateDiffToHMS (date1 date2 worktime-per-day)
+  "Calculate the difference of DATE1 and DATE2 in HMS form.
+Each day counts with WORKTIME-PER-DAY hours."
+  (cl-labels ((dateTrunc (date)
+                         (calcFunc-date (calcFunc-year date)
+                                        (calcFunc-month date)
+                                        (calcFunc-day date)))
+              (datep (date)
+                     (and (listp date)
+                          (eq (car date) 'date))))
+    (if (and (datep date1)
+             (datep date2))
+        (let* ((business-days (calcFunc-bsub
+                               (dateTrunc date1)
+                               (dateTrunc date2))))
+          (calcFunc-add
+           (calcFunc-hms (calcFunc-mul business-days worktime-per-day) 0 0)
+           (calcFunc-sub (calcFunc-time date1) (calcFunc-time date2)))
+          )
+      0)))
 
 ;; Better org return
 
@@ -88,7 +116,22 @@ Use a prefix arg to get regular RET. "
 (setq org-tree-slide-skip-outline-level 4)
 (org-tree-slide-simple-profile)
 
-
+;; Org present
+(require-package 'org-present)
+(eval-after-load "org-present"
+  '(progn
+     (add-hook 'org-present-mode-hook
+               (lambda ()
+                 (org-present-big)
+                 (org-display-inline-images t t)
+                 (org-present-hide-cursor)
+                 (org-present-read-only)))
+     (add-hook 'org-present-mode-quit-hook
+               (lambda ()
+                 (org-present-small)
+                 (org-remove-inline-images)
+                 (org-present-show-cursor)
+                 (org-present-read-write)))))
 
 ;; (when *is-a-mac*
 ;;   (maybe-require-package 'grab-mac-link))
