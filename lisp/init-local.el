@@ -37,7 +37,7 @@ This is to update existing buffers after a Git pull of their underlying files."
      (other-frame -1))))
 
 ;;default font
-(set-default-font "Free Mono 14" nil t)
+(set-default-font "Free Mono 12" nil t)
 
 ;;deleteword without add to kill ring
 (defun my-delete-word (arg)
@@ -60,5 +60,15 @@ This command does not push text to `kill-ring'."
 
 (bind-key* "M-d" 'my-delete-word)
 (bind-key* "<C-backspace>" 'my-backward-delete-word)
+
+;; get rid of backup files
+;; Don't clutter up directories with files~
+(setq dotfiles-dir "~/.emacs.d/dotfiles/")
+(setq backup-directory-alist `(("." . ,(expand-file-name
+                                        (concat dotfiles-dir "backups")))))
+
+;; Don't clutter with #files either
+(setq auto-save-file-name-transforms
+      `((".*" ,(expand-file-name (concat dotfiles-dir "backups")))))
 
 (provide 'init-local)

@@ -1,6 +1,6 @@
 (require-package 'etags)
 
-(setq tags-file-name "TAGS")
+(setq tags-file-name "~/.emacs.d/TAGS")
 (setq tag-file ".TAGS")
 
 (defun refresh-project-tags ()
@@ -10,7 +10,7 @@
       ((tag-dir (locate-dominating-file buffer-file-name tag-file)))
     (if tag-dir
         (shell-command (format
-                        "find %s -name \"*.[chCH]\" -print | sed -e \"s/^/c:\\/msys64/\" | /mingw64/bin/etags.exe - -a -o %s"
+                        "find %s \\( -name \"*.[chCH]\" -o -name \"*.go\" \\) -print | etags - -o %s"
                         tag-dir
                         "~/.emacs.d/TAGS"))
       (print (format "No %s file found in project." tag-file)))))
