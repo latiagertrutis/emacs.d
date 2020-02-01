@@ -525,5 +525,27 @@ Use a prefix arg to get regular RET. "
 ;;      (sqlite . t))))
 
 
+(defun insert-week-hours-table ()
+  "Insert week table for the hours."
+  (interactive)
+  (end-of-buffer)
+  (let* ((now (decode-time))
+         (this-week (copy-sequence now))
+         (next-week (copy-sequence now)))
+    (cl-decf (nth 3 this-week) (mod (- (nth 6 this-week) 1) 7))
+    (cl-incf (nth 3 next-week) (mod (- 7 (nth 6 next-week)) 7))
+    (insert (format-time-string "* %G: Week => %B(%d) - " (apply #'encode-time this-week))
+            (format-time-string "%B(%d)\n" (apply #'encode-time next-week))
+            "   |   | ENTRADA | SALIDA | HORAS |\n"
+            "   |---+---------+--------+-------|\n"
+            "   | # |         |        |       |\n"
+            "   | # |         |        |       |\n"
+            "   | # |         |        |       |\n"
+            "   | # |         |        |       |\n"
+            "   | # |         |        |       |\n"
+            "   |---+---------+--------+-------|\n"
+            "   |   |         |        |       |\n"
+            "   #+TBLFM: $4=dateDiffToHMS($3,$2,8)::@>$>=vsum(@I$>..@II$>)\n")))
+
 (provide 'init-org)
 ;;; init-org.el ends here
