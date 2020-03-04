@@ -9,6 +9,5 @@
   (when (maybe-require-package 'flycheck-color-mode-line)
     (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)))
 
-
 (provide 'init-flycheck)
 ;;; init-flycheck.el ends here

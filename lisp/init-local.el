@@ -1,6 +1,15 @@
 (global-hl-line-mode +1)
 (setq-default cursor-type 'bar)
 
+;; Custom faces
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(highlight ((t (:inherit isearch))))
+ '(hl-line ((t (:background "#383838")))))
+
 ;; indent all the buffer
 (defun indent-buffer ()
   "Just indent all the buffer."
