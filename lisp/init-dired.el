@@ -26,5 +26,7 @@
   (after-load 'dired
     (add-hook 'dired-mode-hook 'diff-hl-dired-mode)))
 
+(require-package 'neotree)
+
 (provide 'init-dired)
 ;;; init-dired.el ends here
