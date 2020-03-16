@@ -365,7 +365,7 @@
 ;; Quiet byte-compiler.
 (defvar c-style)
 (defvar explicit-shell-file-name)
-(setq user-full-name "Mateo Rodriguez Ripolles")
+(setq user-full-name "Mateo Rodriguez Ripolles (teorodrip@posteo.net)")
 
 ;; User Options (Variables) --------------------------------
 
