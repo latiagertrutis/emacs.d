@@ -1,20 +1,3 @@
-(require-package 'go-mode)
-(require-package 'company-go)
-(require-package 'gotest)
-(autoload 'go-mode "go-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-hook 'go-mode-hook #'lsp)
 
-(defun my-go-mode-hook ()
-  "My go mode hook."
-  (setq tab-width 2 indent-tabs-mode 1)
-  (local-set-key (kbd "M-.") #'godef-jump)
-  (add-hook 'before-save-hook 'gofmt-before-save))
-  (add-hook 'go-mode-hook 'my-go-mode-hook)
-
-(require 'company)
-(require 'go-mode)
-(require 'company-go)
-(add-hook 'go-mode-hook (lambda ()
-                          (company-mode)
-                          (set (make-local-variable 'company-backends) '(company-go))))
 (provide 'init-go)
