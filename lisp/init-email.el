@@ -100,53 +100,9 @@
 
 (add-hook 'gnus-summary-prepare-hook '(lambda () (run-with-idle-timer 0.1 nil 'gnus-show-all)))
 
-;;;;;;;;;;;;;;;;;;;;;;; bbdb config from https://stackoverflow.com/questions/22174756/insert-current-entry-into-bbdb ;;;;;;;;;;;;;;
-(require-package 'bbdb)
-
-;; initialization
-(bbdb-initialize 'gnus 'message)
-(bbdb-mua-auto-update-init 'gnus 'message)
-
-(setq bbdb-offer-save 1                        ;; 1 means save-without-asking
-
-      bbdb-use-pop-up t                        ;; allow popups for addresses
-      bbdb-electric-p t                        ;; be disposable with SPC
-      bbdb-popup-target-lines  1               ;; very small
-
-      bbdb-dwim-net-address-allow-redundancy t ;; always use full name
-      bbdb-quiet-about-name-mismatches 2       ;; show name-mismatches 2 secs
-
-      bbdb-always-add-address t                ;; add new addresses to existing...
-      ;; ...contacts automatically
-      bbdb-canonicalize-redundant-nets-p t     ;; x@foo.bar.cx => x@bar.cx
-
-      bbdb-completion-type nil                 ;; complete on anything
-
-      bbdb-complete-name-allow-cycling t       ;; cycle through matches
-      ;; this only works partially
-
-      bbbd-message-caching-enabled t           ;; be fast
-      bbdb-use-alternate-names t               ;; use AKA
-
-      bbdb-elided-display t                    ;; single-line addresses
-
-      ;; auto-create addresses from mail
-      bbdb/mail-auto-create-p 'bbdb-ignore-some-messages-hook
-      ;; What do we do when invoking bbdb interactively
-      bbdb-mua-update-interactive-p '(query . create)
-      ;; Make sure we look at every address in a message and not only the
-      ;; first one
-      bbdb-message-all-addresses t
-      bbdb-file "~/.bbdb")
-
-;; use ; on a message to invoke bbdb interactively
-(add-hook
- 'gnus-summary-mode-hook
- (lambda ()
-   (define-key gnus-summary-mode-map (kbd ";") 'bbdb-mua-edit-field)))
-(bbdb-initialize 'gnus 'message)
-(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;; end of bbdb integration ;;;;;;;;;;;;;;;;;;;;
+;; auto-complete emacs address using bbdb command, optional
+(add-hook 'message-mode-hook
+          '(lambda ()
+             (flyspell-mode t)))
 
 (provide 'init-email)
