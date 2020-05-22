@@ -480,7 +480,7 @@ Use a prefix arg to get regular RET. "
             "   #+TBLFM: $4=dateDiffToHMS($3,$2,8)::@>$>=vsum(@I$>..@II$>)\n")))
 
 (setq org-startup-indented t) ; Enable `org-indent-mode' by default
-(add-hook 'org-mode-hook #'visual-line-mode))
+(add-hook 'org-mode-hook #'visual-line-mode)
 
 (provide 'init-org)
 ;;; init-org.el ends here
