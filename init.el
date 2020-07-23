@@ -146,7 +146,6 @@
 (require 'init-alias)
 (require 'init-etags)
 (require 'init-powerline)
-(require 'init-dbc-mode)
 ;; Extra packages which don't require any configuration
 
 (require-package 'gnuplot)

@@ -337,7 +337,7 @@ Use a prefix arg to get regular RET. "
 (add-hook 'org-agenda-mode-hook 'hl-line-mode)
 
 (setq org-agenda-files
-      (list "~/workspace/org/todos.org"))
+      (list "~/org/todos.org"))
 
 ;; 
 ;; ;;; Org clock
