@@ -146,6 +146,20 @@ Version 2017-09-01"
          (message "File path copied: [%s]" $fpath)
          $fpath )))))
 
+;;----------------------------------------------------------------------------
+;; Copy base line reference
+;;----------------------------------------------------------------------------
+
+(defun copy-file-line-position ()
+  "Copy to the kill ring a string in the format \"file-name:line-number\"
+for the current buffer's file name, and the line number at point."
+  (interactive)
+  (let (($reference (format "%s:%d" (file-name-nondirectory (buffer-file-name)) (save-restriction
+                                                                                  (widen) (line-number-at-pos)))))
+    (message "File reference copied: [%s]" $reference)
+    (kill-new $reference))
+  )
+
 
 (provide 'init-utils)
 ;;; init-utils.el ends here
