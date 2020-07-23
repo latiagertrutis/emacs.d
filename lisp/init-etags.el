@@ -1,6 +1,6 @@
 (require-package 'etags)
 
-(setq tags-file-name "~/.emacs.d/TAGS")
+;; (visit-tags-table "~/.emacs.d/TAGS")
 (setq tag-file ".TAGS")
 
 (defun refresh-project-tags ()
@@ -8,11 +8,14 @@
   (interactive)
   (let
       ((tag-dir (locate-dominating-file buffer-file-name tag-file)))
+    (setq tags-file-name (concat (file-name-as-directory tag-dir) tag-file))
+    (visit-tags-table (concat (file-name-as-directory tag-dir) tag-file))
+    (print (format "El nuevo tag es: %s" tags-file-name))
     (if tag-dir
         (shell-command (format
                         "find %s \\( -name \"*.[chCH]\" -o -name \"*.go\" \\) -print | etags - -o %s"
                         tag-dir
-                        "~/.emacs.d/TAGS"))
+                        tags-file-name))
       (print (format "No %s file found in project." tag-file)))))
 
 (bind-key* "M-g d" 'xref-find-definitions)

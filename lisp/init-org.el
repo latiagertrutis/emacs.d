@@ -337,7 +337,7 @@ Use a prefix arg to get regular RET. "
 (add-hook 'org-agenda-mode-hook 'hl-line-mode)
 
 (setq org-agenda-files
-      (list "~/org/todos.org"))
+      (list "~/workspace/org/todos.org"))
 
 ;; 
 ;; ;;; Org clock
@@ -478,6 +478,9 @@ Use a prefix arg to get regular RET. "
             "   |---+---------+--------+-------|\n"
             "   |   |         |        |       |\n"
             "   #+TBLFM: $4=dateDiffToHMS($3,$2,8)::@>$>=vsum(@I$>..@II$>)\n")))
+
+(setq org-startup-indented t)
+(add-hook 'org-mode-hook #'visual-line-mode)
 
 (provide 'init-org)
 ;;; init-org.el ends here

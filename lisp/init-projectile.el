@@ -11,7 +11,10 @@
   (after-load 'projectile
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
-  (maybe-require-package 'ibuffer-projectile))
+  (maybe-require-package 'ibuffer-projectile)
+  (setq projectile-indexing-method 'native))
+
+(require-package 'helm-projectile)
 
 
 (provide 'init-projectile)
