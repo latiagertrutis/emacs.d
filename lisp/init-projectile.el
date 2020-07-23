@@ -5,6 +5,8 @@
 (when (maybe-require-package 'projectile)
   (add-hook 'after-init-hook 'projectile-mode)
 
+  (setq projectile-indexing-method 'native)
+
   ;; Shorter modeline
   (setq-default projectile-mode-line-prefix " Proj")
 
@@ -15,6 +17,10 @@
   (setq projectile-indexing-method 'native))
 
 (require-package 'helm-projectile)
+
+(when (maybe-require-package 'helm-projectile)
+  (helm-projectile-on)
+  )
 
 
 (provide 'init-projectile)
