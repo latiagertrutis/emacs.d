@@ -5,7 +5,12 @@
 (when (maybe-require-package 'projectile)
   (add-hook 'after-init-hook 'projectile-mode)
 
-  (setq projectile-indexing-method 'native)
+  (setq projectile-indexing-method 'alien
+        projectile-project-root-files #'(".projectile")
+        projectile-project-root-files-functions #'(projectile-root-top-down
+                                                   projectile-root-top-down-recurring
+                                                   projectile-root-bottom-up
+                                                   projectile-root-local))
 
   ;; Shorter modeline
   (setq-default projectile-mode-line-prefix " Proj")
