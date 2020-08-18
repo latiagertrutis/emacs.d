@@ -46,7 +46,7 @@ This is to update existing buffers after a Git pull of their underlying files."
      (other-frame -1))))
 
 ;;default font
-(set-default-font "Free Mono 12" nil t)
+(add-to-list 'default-frame-alist '(font . "Free Mono 12"))
 
 ;;deleteword without add to kill ring
 (defun my-delete-word (arg)
